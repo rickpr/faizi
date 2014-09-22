@@ -1,0 +1,74 @@
+<h1>Topology</h1>
+<table class="table table-striped text-warning">
+  <thead>
+    <tr>
+      <th>Source Switch</th>
+      <th>Destination Switch</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @topology["edgeProperties"].each do |edge| %>
+      <tr>
+       <td> <%= edge["edge"]["headNodeConnector"]["node"]["id"] %></td>
+       <td> <%= edge["edge"]["tailNodeConnector"]["node"]["id"] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h1>Proactive Flows</h1>
+<%= @flows["flowConfig"] %>
+<h1>Hosts</h1>
+<table class="table table-striped text-warning">
+  <thead>
+    <tr>
+      <th>IP Address</th>
+      <th>Switch</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hosts["hostConfig"].each do |host| %>
+    <tr>
+       <td> <%= host["networkAddress"] %></td>
+       <td><%= host["nodeId"] %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<!--h1>Flow Statistics</h1>
+<%= @statistics %>
+<h1>Port Statistics</h1>
+<%= @pstatistics %>
+<h1>Table Statistics</h1>
+<%# @tstatistics %>-->
+
+<h1>Per-flow Statistics</h1>
+<% @statistics["flowStatistics"].each do |node| %>
+  Switch <%= node["node"]["id"] %>
+  <table class="table table-striped text-warning">
+    <thead>
+      <tr>
+        <th>IP Address</th>
+        <th>Packet Count</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% node["flowStatistic"].each do |flow| %>
+        <tr>
+         <td> <%= flow["flow"]["match"]["matchField"][0]["value"] %></td>
+         <td> <%= flow["packetCount"] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<h1>Flow Creation tests (currently not running)</h1>
+<% @insert.each do |i| %>
+  <%= i %><br>
+<% end %>

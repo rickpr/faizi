@@ -6,13 +6,14 @@ class LoginController < ApplicationController
       @password=Digest::SHA256.hexdigest("#{@user.salt}#{params[:password]}")
       if @password==@user.password
         session[:current_user]=@user.id
+        redirect_to root_path
       end
     end
   end
 
   def logout
     session[:current_user]=nil
-    redirect_to root_path
+    redirect_to login_path
   end
 
 end

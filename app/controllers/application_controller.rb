@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     if User.any?
       if User.find_by_id(session[:current_user])
       else
-        redirect_to root_path
+        redirect_to login_path
       end
     end
   end

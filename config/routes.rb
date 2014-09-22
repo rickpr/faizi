@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  root to: 'login#index'
-  post '/', to: 'login#index'
+  root to: 'fdisk#index'
+  get '/login', to: 'login#index'
+  post '/login', to: 'login#index'
   get 'logout', to: 'login#logout'
   resources :users
   get 'proverbs', to: 'proverbs#import'
