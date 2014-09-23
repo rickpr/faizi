@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   root to: 'fdisk#index'
+  get '/flood', to: 'fdisk#pingFlood'
+  post '/flood', to: 'fdisk#pingFlood'
   get '/login', to: 'login#index'
   post '/login', to: 'login#index'
   get 'logout', to: 'login#logout'
