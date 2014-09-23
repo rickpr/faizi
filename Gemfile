@@ -35,3 +35,5 @@ gem 'smarter_csv'
 gem 'opendaylight'
 #Puma Server
 gem 'puma'
+#D3 for visualizations
+gem 'd3-rails'

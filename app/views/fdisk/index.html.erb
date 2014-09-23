@@ -1,6 +1,8 @@
 <h1>Send Packets</h1>
 <h3 class="text-warning">May take some time to show up, be patient and refresh</h3>
 <%= render 'form' %>
+<h1>Traffic Per Switch/Host</h1>
+<%= render "hostcharts" %>
 <h1>Topology</h1>
 <table class="table table-striped text-warning">
   <thead>
@@ -32,7 +34,7 @@
   </thead>
 
   <tbody>
-    <% @hosts["hostConfig"].each do |host| %>
+    <% @hosts.each do |host| %>
     <tr>
        <td> <%= host["networkAddress"] %></td>
        <td><%= host["nodeId"] %></td>
@@ -50,7 +52,7 @@
 <%# @tstatistics %>-->
 
 <h1>Per-flow Statistics</h1>
-<% @statistics["flowStatistics"].each do |node| %>
+<% @statistics.each do |node| %>
 <h3 class="text-warning"> Switch <%= node["node"]["id"] %></h3>
   <table class="table table-striped text-warning">
     <thead>

@@ -3,8 +3,8 @@ class FdiskController < ApplicationController
       odl=Opendaylight::API
       @topology=odl.topology
       @flows=odl.listFlows
-      @hosts=odl.hostTracker
-      @statistics=odl.statistics
+      @hosts=odl.hostTracker["hostConfig"]
+      @statistics=odl.statistics["flowStatistics"]
       @pstatistics=odl.statistics(stats: "port")
       @tstatistics=odl.statistics(stats: "table")
       @insert=Array.new
@@ -17,6 +17,6 @@ class FdiskController < ApplicationController
   end
   def pingFlood
   system("screen -S mininet -p 0 -X stuff \"h#{params[:sourceHost]} ping h#{params[:destHost]} -f -c #{params[:packetCount]}\\n\"")
-  redirect_to root_path
+  redirect_to root_path, notice: 'Traffic sent.'
   end
 end
