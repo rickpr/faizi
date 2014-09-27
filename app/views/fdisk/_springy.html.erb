@@ -1,0 +1,28 @@
+<script type=text/javascript>
+// make a new graph
+var graph = new Springy.Graph();
+
+// make some nodes
+<% @statistics.each do |node| %>
+  <% mac=node["node"]["id"] %>
+  var node<%= mac.gsub(':','') %> = graph.newNode({image: {src: '/svgmaker/switch.svg?id=<%= mac %>', height: 60, width: 160}});
+
+<% end %>
+<% @hosts.each do |host| %>
+  <% ipaddr=host["networkAddress"] %>
+ var host<%= ipaddr.gsub('.','') %> = graph.newNode({image: {src: '/svgmaker/host.svg?id=<%= ipaddr %>', height: 100, width: 100}});
+<% end %>
+// connect them with an edge
+<% @topology["edgeProperties"].each do |edge| %>
+  graph.newEdge(node<%= edge["edge"]["headNodeConnector"]["node"]["id"].gsub(':','') %>, node<%= edge["edge"]["tailNodeConnector"]["node"]["id"].gsub(':','') %>)
+<% end %>
+<% @hosts.each do |host| %>
+  graph.newEdge(host<%= host["networkAddress"].gsub('.','') %>, node<%= host["nodeId"].gsub(':','') %>)
+<% end %>
+</script>
+<div id="springy">
+<canvas id="topology" width="1200" height="800" style="background: #800000;" />
+<script>
+$('#topology').springy({ graph: graph });
+</script>
+</div>

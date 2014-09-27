@@ -19,6 +19,7 @@ body {
     background-repeat: no-repeat;
     background-color: #000;
     background-position: right top;
+    background-attachment: fixed;
     margin-right: 200px;
 }
 

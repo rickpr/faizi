@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'svgmaker/host'
+
+  get 'svgmaker/switch'
+
   root to: 'fdisk#index'
   post '/flood', to: 'fdisk#pingFlood'
   get '/login', to: 'login#index'
