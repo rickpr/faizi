@@ -67,7 +67,7 @@
     <tbody>
       <% node["flowStatistic"].each do |flow| %>
         <tr>
-         <td> <%= flow["flow"]["match"]["matchField"][0]["value"] %></td>
+         <td> <%= flow["flow"]["match"]["matchField"][1]["value"] %></td>
          <td> <%= flow["packetCount"] %></td>
         </tr>
       <% end %>

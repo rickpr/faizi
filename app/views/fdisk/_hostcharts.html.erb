@@ -8,7 +8,7 @@
       var data = [
         <% counter =0 %>
         <% node["flowStatistic"].each do |flow| %>
-          <% if counter > 0 %> , <% end %> { "Host":"<%= flow["flow"]["match"]["matchField"][0]["value"].split('.')[-1] %>" , "Packets":<%= flow["packetCount"] %> }
+          <% if counter > 0 %> , <% end %> { "Host":"<%= flow["flow"]["match"]["matchField"][1]["value"].split('.')[-1] %>" , "Packets":<%= flow["packetCount"] %> }
          <%  counter += 1 %>
         <% end %>
       ];
